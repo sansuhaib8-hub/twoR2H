@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "295083878114",
+    "project_id": "twor2h",
+    "storage_bucket": "twor2h.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:295083878114:android:581fbfc8edee699eb460bb",
+        "android_client_info": {
+          "package_name": "com.kurdistan.two.r2h"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDouUeg56WBFtaWJNpW8oV3ofmE6qroh7Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
