@@ -16,6 +16,10 @@ jobs:
         with:
           flutter-version: '3.22.2'
 
+      - run: flutter clean
+
+      - run: rm -rf build
+
       - run: flutter pub get
 
       - run: flutter build apk --release
