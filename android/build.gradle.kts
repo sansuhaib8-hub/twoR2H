@@ -1,23 +1,42 @@
 plugins {
-    id("com.google.gms.google-services") version "4.4.2" apply false
+    id("com.android.application")
+    id("kotlin-android")
+    id("dev.flutter.flutter-gradle-plugin")
+    id("com.google.gms.google-services")
 }
 
-val newBuildDir: Directory =
-    rootProject.layout.buildDirectory.dir("../../build").get()
+android {
+    namespace = "com.kurdistan.two.r2h"
+    compileSdk = flutter.compileSdkVersion
 
-rootProject.layout.buildDirectory.value(newBuildDir)
+    ndkVersion = "27.0.12077973"
 
-subprojects {
-    val newSubprojectBuildDir: Directory =
-        newBuildDir.dir(project.name)
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
 
-    project.layout.buildDirectory.value(newSubprojectBuildDir)
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11.toString()
+    }
+
+    defaultConfig {
+        applicationId = "com.kurdistan.two.r2h"
+
+        minSdk = 23
+        targetSdk = flutter.targetSdkVersion
+
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.getByName("debug")
+        }
+    }
 }
 
-subprojects {
-    project.evaluationDependsOn(":app")
-}
-
-tasks.register<Delete>("clean") {
-    delete(rootProject.layout.buildDirectory)
+flutter {
+    source = "../.."
 }
