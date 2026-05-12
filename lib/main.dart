@@ -12,7 +12,7 @@ class TwoR2HApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '2R2H',
+      title: 'دوو ڕاست دوو هەڵە',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
@@ -41,7 +41,7 @@ class HomeScreen extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
-              const SizedBox(height: 60),
+              const SizedBox(height: 50),
               // لۆگۆ
               Container(
                 width: 120,
@@ -59,11 +59,11 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: const Center(
+                child: Center(
                   child: Text(
                     '2R\n2H',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: GoogleFonts.cairo(
                       fontSize: 28,
                       fontWeight: FontWeight.w900,
                       color: Colors.white,
@@ -71,13 +71,26 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 24),
-              Text('یاری 2R2H', style: GoogleFonts.cairo(
-                fontSize: 32, fontWeight: FontWeight.w800, color: Colors.white,
-              )),
-              const SizedBox(height: 8),
-              Text('ژمارەکانی بەرامبەرەکەت بدۆزەرەوە!',
-                style: GoogleFonts.cairo(fontSize: 14, color: Colors.white54)),
+              const SizedBox(height: 20),
+              // ناوی یاری
+              Text(
+                'دوو ڕاست دوو هەڵە',
+                textDirection: TextDirection.rtl,
+                style: GoogleFonts.cairo(
+                  fontSize: 28,
+                  fontWeight: FontWeight.w900,
+                  color: Colors.white,
+                ),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                'ژمارەکانی بەرامبەرەکەت بدۆزەرەوە!',
+                textDirection: TextDirection.rtl,
+                style: GoogleFonts.cairo(
+                  fontSize: 14,
+                  color: Colors.white54,
+                ),
+              ),
               const SizedBox(height: 20),
               // ڕێنمایی
               Container(
@@ -89,6 +102,7 @@ class HomeScreen extends StatelessWidget {
                   border: Border.all(color: Colors.white12),
                 ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     _rule('R', 'ژمارە و شوێن هەردوو ڕاستن'),
                     _rule('H', 'ژمارە ڕاستە بەڵام شوێن هەڵەیە'),
@@ -99,18 +113,29 @@ class HomeScreen extends StatelessWidget {
               const Spacer(),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32),
-                child: Column(
-                  children: [
-                    _btn(context, '🎮  یاری لۆکاڵ', 'دوو کەس - یەک مۆبایل',
-                      const LinearGradient(colors: [Color(0xFFFF6B6B), Color(0xFFFF8E53)]),
-                      () => Navigator.push(context, MaterialPageRoute(
-                        builder: (_) => const LocalGameScreen()))),
-                  ],
+                child: _btn(
+                  context,
+                  '🎮  یاری لۆکاڵ',
+                  'دوو کەس - یەک مۆبایل',
+                  const LinearGradient(
+                    colors: [Color(0xFFFF6B6B), Color(0xFFFF8E53)],
+                  ),
+                  () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const LocalGameScreen(),
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(height: 40),
-              Text('بەرهەمی کوردستان 🏔️',
-                style: GoogleFonts.cairo(fontSize: 12, color: Colors.white24)),
+              Text(
+                'بەرهەمی کوردستان 🏔️',
+                style: GoogleFonts.cairo(
+                  fontSize: 12,
+                  color: Colors.white24,
+                ),
+              ),
               const SizedBox(height: 16),
             ],
           ),
@@ -123,19 +148,32 @@ class HomeScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          Text(
+            desc,
+            textDirection: TextDirection.rtl,
+            style: GoogleFonts.cairo(
+              fontSize: 13,
+              color: Colors.white70,
+            ),
+          ),
+          const SizedBox(width: 10),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
             decoration: BoxDecoration(
               color: const Color(0xFF00D4AA).withOpacity(0.15),
               borderRadius: BorderRadius.circular(6),
             ),
-            child: Text(tag, style: GoogleFonts.cairo(
-              fontSize: 13, fontWeight: FontWeight.w700, color: const Color(0xFF00D4AA),
-            )),
+            child: Text(
+              tag,
+              style: GoogleFonts.cairo(
+                fontSize: 13,
+                fontWeight: FontWeight.w700,
+                color: const Color(0xFF00D4AA),
+              ),
+            ),
           ),
-          const SizedBox(width: 10),
-          Text(desc, style: GoogleFonts.cairo(fontSize: 13, color: Colors.white70)),
         ],
       ),
     );
@@ -151,24 +189,41 @@ class HomeScreen extends StatelessWidget {
         decoration: BoxDecoration(
           gradient: gradient,
           borderRadius: BorderRadius.circular(20),
-          boxShadow: [BoxShadow(
-            color: Colors.black.withOpacity(0.3), blurRadius: 15, offset: const Offset(0, 5),
-          )],
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.3),
+              blurRadius: 15,
+              offset: const Offset(0, 5),
+            ),
+          ],
         ),
         child: Row(
           children: [
-            const SizedBox(width: 8),
+            const Icon(Icons.arrow_back_ios,
+                color: Colors.white70, size: 18),
+            const Spacer(),
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text(label, style: GoogleFonts.cairo(
-                  fontSize: 18, fontWeight: FontWeight.w800, color: Colors.white,
-                )),
-                Text(sub, style: GoogleFonts.cairo(fontSize: 12, color: Colors.white70)),
+                Text(
+                  label,
+                  textDirection: TextDirection.rtl,
+                  style: GoogleFonts.cairo(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w800,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  sub,
+                  textDirection: TextDirection.rtl,
+                  style: GoogleFonts.cairo(
+                    fontSize: 12,
+                    color: Colors.white70,
+                  ),
+                ),
               ],
             ),
-            const Spacer(),
-            const Icon(Icons.arrow_forward_ios, color: Colors.white70, size: 18),
           ],
         ),
       ),
@@ -232,191 +287,425 @@ class _LocalGameScreenState extends State<LocalGameScreen> {
   final _ctrl = TextEditingController();
   String _err = '';
   int _winner = 0;
+  bool _showSecret = false;
 
   void _submit() {
     final t = _ctrl.text.trim();
     setState(() => _err = '');
     switch (_phase) {
       case Phase.p1Secret:
-        if (!isValid(t)) { setState(() => _err = 'ژمارەیەکی 4 ژیر بنووسە، دووبارە نەبێت، سفر نەبێتە سەرەوە'); return; }
-        _p1Secret = t; _ctrl.clear();
+        if (!isValid(t)) {
+          setState(() => _err =
+              'ژمارەیەکی 4 ژیر بنووسە، دووبارە نەبێت، سفر نەبێتە سەرەوە');
+          return;
+        }
+        _p1Secret = t;
+        _ctrl.clear();
         setState(() => _phase = Phase.p2Secret);
         _showPass('یاریزانی دووەم');
         break;
       case Phase.p2Secret:
-        if (!isValid(t)) { setState(() => _err = 'ژمارەیەکی 4 ژیر بنووسە، دووبارە نەبێت، سفر نەبێتە سەرەوە'); return; }
-        _p2Secret = t; _ctrl.clear();
+        if (!isValid(t)) {
+          setState(() => _err =
+              'ژمارەیەکی 4 ژیر بنووسە، دووبارە نەبێت، سفر نەبێتە سەرەوە');
+          return;
+        }
+        _p2Secret = t;
+        _ctrl.clear();
         setState(() => _phase = Phase.p1Guess);
         _showPass('یاریزانی یەکەم');
         break;
       case Phase.p1Guess:
-        if (!isValid(t)) { setState(() => _err = 'ژمارەیەکی 4 ژیر بنووسە'); return; }
+        if (!isValid(t)) {
+          setState(() => _err = 'ژمارەیەکی 4 ژیر بنووسە');
+          return;
+        }
         final r = evaluate(_p2Secret, t);
-        setState(() { _p1Guesses.add(GuessEntry(t, r)); _ctrl.clear(); });
-        if (r.isWin) { setState(() { _winner = 1; _phase = Phase.done; }); }
-        else { setState(() => _phase = Phase.p2Guess); _showPass('یاریزانی دووەم'); }
+        setState(() {
+          _p1Guesses.add(GuessEntry(t, r));
+          _ctrl.clear();
+        });
+        if (r.isWin) {
+          setState(() {
+            _winner = 1;
+            _phase = Phase.done;
+          });
+        } else {
+          setState(() => _phase = Phase.p2Guess);
+          _showPass('یاریزانی دووەم');
+        }
         break;
       case Phase.p2Guess:
-        if (!isValid(t)) { setState(() => _err = 'ژمارەیەکی 4 ژیر بنووسە'); return; }
+        if (!isValid(t)) {
+          setState(() => _err = 'ژمارەیەکی 4 ژیر بنووسە');
+          return;
+        }
         final r = evaluate(_p1Secret, t);
-        setState(() { _p2Guesses.add(GuessEntry(t, r)); _ctrl.clear(); });
-        if (r.isWin) { setState(() { _winner = 2; _phase = Phase.done; }); }
-        else { setState(() => _phase = Phase.p1Guess); _showPass('یاریزانی یەکەم'); }
+        setState(() {
+          _p2Guesses.add(GuessEntry(t, r));
+          _ctrl.clear();
+        });
+        if (r.isWin) {
+          setState(() {
+            _winner = 2;
+            _phase = Phase.done;
+          });
+        } else {
+          setState(() => _phase = Phase.p1Guess);
+          _showPass('یاریزانی یەکەم');
+        }
         break;
-      case Phase.done: break;
+      case Phase.done:
+        break;
     }
   }
 
   void _showPass(String next) {
-    showDialog(context: context, barrierDismissible: false, builder: (_) => AlertDialog(
-      backgroundColor: const Color(0xFF1A1A2E),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      content: Text('مۆبایلەکە بدەرە بە $next\nچاوەکانت داخە!',
-        style: GoogleFonts.cairo(color: Colors.white70, fontSize: 15),
-        textAlign: TextAlign.center, textDirection: TextDirection.rtl),
-      actions: [TextButton(
-        onPressed: () => Navigator.pop(context),
-        child: Text('ئامادەم ✅', style: GoogleFonts.cairo(
-          color: const Color(0xFF00D4AA), fontWeight: FontWeight.bold)),
-      )],
-    ));
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => AlertDialog(
+        backgroundColor: const Color(0xFF1A1A2E),
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        content: Text(
+          'مۆبایلەکە بدەرە بە $next\nچاوەکانت داخە!',
+          style: GoogleFonts.cairo(color: Colors.white70, fontSize: 15),
+          textAlign: TextAlign.center,
+          textDirection: TextDirection.rtl,
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(
+              'ئامادەم ✅',
+              style: GoogleFonts.cairo(
+                color: const Color(0xFF00D4AA),
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
+
+  String get _currentSecret =>
+      _phase == Phase.p1Guess || _phase == Phase.p1Secret
+          ? _p1Secret
+          : _p2Secret;
 
   @override
   Widget build(BuildContext context) {
     if (_phase == Phase.done) return _winScreen();
-    bool secret = _phase == Phase.p1Secret || _phase == Phase.p2Secret;
-    String title = _phase == Phase.p1Secret || _phase == Phase.p1Guess
-        ? 'یاریزانی یەکەم' : 'یاریزانی دووەم';
-    List<GuessEntry> guesses = _phase == Phase.p1Guess || _phase == Phase.p1Secret
-        ? _p1Guesses : _p2Guesses;
+    bool isSettingSecret =
+        _phase == Phase.p1Secret || _phase == Phase.p2Secret;
+    String playerName =
+        _phase == Phase.p1Secret || _phase == Phase.p1Guess
+            ? 'یاریزانی یەکەم'
+            : 'یاریزانی دووەم';
+    List<GuessEntry> guesses =
+        _phase == Phase.p1Guess ? _p1Guesses : _p2Guesses;
 
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(gradient: LinearGradient(
-          begin: Alignment.topCenter, end: Alignment.bottomCenter,
-          colors: [Color(0xFF0F0F1E), Color(0xFF1A1A3E)],
-        )),
-        child: SafeArea(child: Column(children: [
-          // سەرەوە
-          Padding(padding: const EdgeInsets.all(16), child: Row(children: [
-            IconButton(onPressed: () => Navigator.pop(context),
-              icon: const Icon(Icons.arrow_back_ios, color: Colors.white)),
-            const Spacer(),
-            Text(title, style: GoogleFonts.cairo(
-              fontSize: 18, fontWeight: FontWeight.w800, color: Colors.white)),
-          ])),
-          // لیستی تاقیکردنەوەکان
-          Expanded(child: secret
-            ? Center(child: Text('ژمارەی نهێنیت بنووسە 🔒',
-                style: GoogleFonts.cairo(color: Colors.white38, fontSize: 16)))
-            : guesses.isEmpty
-              ? Center(child: Text('تاقی بکەرەوە! 🎯',
-                  style: GoogleFonts.cairo(color: Colors.white38, fontSize: 16)))
-              : ListView.builder(
-                  reverse: true,
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  itemCount: guesses.length,
-                  itemBuilder: (_, i) {
-                    final g = guesses[guesses.length - 1 - i];
-                    final isWin = g.result.isWin;
-                    final Color c = isWin ? const Color(0xFF00D4AA)
-                        : g.result.right > 0 ? const Color(0xFF0099FF)
-                        : g.result.wrongPlace > 0 ? const Color(0xFFFF8E53)
-                        : Colors.white24;
-                    return Container(
-                      margin: const EdgeInsets.only(bottom: 10),
-                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.05),
-                        borderRadius: BorderRadius.circular(14),
-                        border: Border.all(color: c.withOpacity(0.3)),
-                      ),
-                      child: Row(children: [
-                        Text('${guesses.length - i}',
-                          style: GoogleFonts.cairo(color: Colors.white24, fontSize: 12)),
-                        const SizedBox(width: 10),
-                        ...g.guess.split('').map((d) => Container(
-                          width: 34, height: 34,
-                          margin: const EdgeInsets.only(right: 4),
-                          decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Center(child: Text(d, style: GoogleFonts.cairo(
-                            fontSize: 17, fontWeight: FontWeight.w800, color: Colors.white))),
-                        )),
-                        const Spacer(),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-                          decoration: BoxDecoration(
-                            color: c.withOpacity(0.15),
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(color: c.withOpacity(0.4)),
-                          ),
-                          child: Text(g.result.toKurdish(), style: GoogleFonts.cairo(
-                            fontSize: 13, fontWeight: FontWeight.w700, color: c)),
-                        ),
-                      ]),
-                    );
-                  },
-                )),
-          // ئینپوت
-          Container(
-            padding: const EdgeInsets.all(18),
-            decoration: BoxDecoration(
-              color: const Color(0xFF1A1A2E),
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-              boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.3), blurRadius: 20)],
-            ),
-            child: Column(children: [
-              if (_err.isNotEmpty) Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Text(_err, style: GoogleFonts.cairo(
-                  color: const Color(0xFFFF6B6B), fontSize: 13),
-                  textDirection: TextDirection.rtl),
-              ),
-              Row(children: [
-                Expanded(child: TextField(
-                  controller: _ctrl,
-                  keyboardType: TextInputType.number,
-                  maxLength: 4,
-                  obscureText: secret,
-                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.cairo(fontSize: 26, fontWeight: FontWeight.w800,
-                    color: Colors.white, letterSpacing: 8),
-                  decoration: InputDecoration(
-                    counterText: '',
-                    hintText: '• • • •',
-                    hintStyle: const TextStyle(color: Colors.white24, letterSpacing: 8),
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.05),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(14), borderSide: BorderSide.none),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(14),
-                      borderSide: const BorderSide(color: Color(0xFF00D4AA), width: 2)),
-                  ),
-                  onSubmitted: (_) => _submit(),
-                )),
-                const SizedBox(width: 12),
-                GestureDetector(
-                  onTap: _submit,
-                  child: Container(
-                    width: 54, height: 54,
-                    decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                        colors: [Color(0xFF00D4AA), Color(0xFF0099FF)]),
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                    child: const Icon(Icons.send, color: Colors.white),
-                  ),
-                ),
-              ]),
-            ]),
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Color(0xFF0F0F1E), Color(0xFF1A1A3E)],
           ),
-        ])),
+        ),
+        child: SafeArea(
+          child: Column(
+            children: [
+              // سەرەوە
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: const Icon(Icons.arrow_back_ios,
+                          color: Colors.white),
+                    ),
+                    const Spacer(),
+                    // ئەگەر یاری دەکات (نەک دانانی ژمارە) لوگۆی چاو نیشان بدە
+                    if (!isSettingSecret && _currentSecret.isNotEmpty)
+                      GestureDetector(
+                        onTapDown: (_) =>
+                            setState(() => _showSecret = true),
+                        onTapUp: (_) =>
+                            setState(() => _showSecret = false),
+                        onTapCancel: () =>
+                            setState(() => _showSecret = false),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 6),
+                          decoration: BoxDecoration(
+                            color: _showSecret
+                                ? const Color(0xFF00D4AA).withOpacity(0.2)
+                                : Colors.white.withOpacity(0.05),
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: _showSecret
+                                  ? const Color(0xFF00D4AA)
+                                  : Colors.white12,
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+                              Icon(
+                                _showSecret
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: _showSecret
+                                    ? const Color(0xFF00D4AA)
+                                    : Colors.white38,
+                                size: 18,
+                              ),
+                              const SizedBox(width: 6),
+                              Text(
+                                _showSecret
+                                    ? _currentSecret
+                                    : '••••',
+                                style: GoogleFonts.cairo(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w800,
+                                  color: _showSecret
+                                      ? const Color(0xFF00D4AA)
+                                      : Colors.white38,
+                                  letterSpacing: 4,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    const SizedBox(width: 8),
+                    Text(
+                      playerName,
+                      textDirection: TextDirection.rtl,
+                      style: GoogleFonts.cairo(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w800,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              // ناوەڕۆک
+              Expanded(
+                child: isSettingSecret
+                    ? Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(Icons.lock_outline,
+                                color: Color(0xFF00D4AA), size: 48),
+                            const SizedBox(height: 12),
+                            Text(
+                              'ژمارەی نهێنیت بنووسە',
+                              textDirection: TextDirection.rtl,
+                              style: GoogleFonts.cairo(
+                                  color: Colors.white60, fontSize: 16),
+                            ),
+                          ],
+                        ),
+                      )
+                    : guesses.isEmpty
+                        ? Center(
+                            child: Text(
+                              'تاقی بکەرەوە! 🎯',
+                              style: GoogleFonts.cairo(
+                                  color: Colors.white38, fontSize: 16),
+                            ),
+                          )
+                        : ListView.builder(
+                            reverse: true,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16),
+                            itemCount: guesses.length,
+                            itemBuilder: (_, i) {
+                              final g =
+                                  guesses[guesses.length - 1 - i];
+                              final Color c = g.result.isWin
+                                  ? const Color(0xFF00D4AA)
+                                  : g.result.right > 0
+                                      ? const Color(0xFF0099FF)
+                                      : g.result.wrongPlace > 0
+                                          ? const Color(0xFFFF8E53)
+                                          : Colors.white24;
+                              return Container(
+                                margin:
+                                    const EdgeInsets.only(bottom: 10),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 14, vertical: 12),
+                                decoration: BoxDecoration(
+                                  color:
+                                      Colors.white.withOpacity(0.05),
+                                  borderRadius:
+                                      BorderRadius.circular(14),
+                                  border: Border.all(
+                                      color: c.withOpacity(0.3)),
+                                ),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      '${guesses.length - i}',
+                                      style: GoogleFonts.cairo(
+                                          color: Colors.white24,
+                                          fontSize: 12),
+                                    ),
+                                    const SizedBox(width: 10),
+                                    ...g.guess.split('').map((d) =>
+                                        Container(
+                                          width: 34,
+                                          height: 34,
+                                          margin: const EdgeInsets
+                                              .only(right: 4),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white
+                                                .withOpacity(0.1),
+                                            borderRadius:
+                                                BorderRadius.circular(
+                                                    8),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              d,
+                                              style: GoogleFonts.cairo(
+                                                fontSize: 17,
+                                                fontWeight:
+                                                    FontWeight.w800,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                        )),
+                                    const Spacer(),
+                                    Container(
+                                      padding:
+                                          const EdgeInsets.symmetric(
+                                              horizontal: 12,
+                                              vertical: 5),
+                                      decoration: BoxDecoration(
+                                        color: c.withOpacity(0.15),
+                                        borderRadius:
+                                            BorderRadius.circular(20),
+                                        border: Border.all(
+                                            color: c.withOpacity(0.4)),
+                                      ),
+                                      child: Text(
+                                        g.result.toKurdish(),
+                                        style: GoogleFonts.cairo(
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w700,
+                                          color: c,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+              ),
+              // ئینپوت
+              Container(
+                padding: const EdgeInsets.all(18),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF1A1A2E),
+                  borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(24)),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black.withOpacity(0.3),
+                        blurRadius: 20)
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    if (_err.isNotEmpty)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: Text(
+                          _err,
+                          textDirection: TextDirection.rtl,
+                          style: GoogleFonts.cairo(
+                              color: const Color(0xFFFF6B6B),
+                              fontSize: 13),
+                        ),
+                      ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextField(
+                            controller: _ctrl,
+                            keyboardType: TextInputType.number,
+                            maxLength: 4,
+                            obscureText: isSettingSecret,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.cairo(
+                              fontSize: 26,
+                              fontWeight: FontWeight.w800,
+                              color: Colors.white,
+                              letterSpacing: 8,
+                            ),
+                            decoration: InputDecoration(
+                              counterText: '',
+                              hintText: '• • • •',
+                              hintStyle: const TextStyle(
+                                  color: Colors.white24,
+                                  letterSpacing: 8),
+                              filled: true,
+                              fillColor:
+                                  Colors.white.withOpacity(0.05),
+                              border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.circular(14),
+                                borderSide: BorderSide.none,
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.circular(14),
+                                borderSide: const BorderSide(
+                                    color: Color(0xFF00D4AA),
+                                    width: 2),
+                              ),
+                            ),
+                            onSubmitted: (_) => _submit(),
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        GestureDetector(
+                          onTap: _submit,
+                          child: Container(
+                            width: 54,
+                            height: 54,
+                            decoration: BoxDecoration(
+                              gradient: const LinearGradient(colors: [
+                                Color(0xFF00D4AA),
+                                Color(0xFF0099FF)
+                              ]),
+                              borderRadius: BorderRadius.circular(14),
+                            ),
+                            child: const Icon(Icons.send,
+                                color: Colors.white),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -424,36 +713,65 @@ class _LocalGameScreenState extends State<LocalGameScreen> {
   Widget _winScreen() {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(gradient: LinearGradient(
-          begin: Alignment.topCenter, end: Alignment.bottomCenter,
-          colors: [Color(0xFF0F0F1E), Color(0xFF1A1A3E)],
-        )),
-        child: SafeArea(child: Center(child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('🎉', style: TextStyle(fontSize: 80)),
-            const SizedBox(height: 20),
-            Text('یاریزانی $_winner بردی!', style: GoogleFonts.cairo(
-              fontSize: 32, fontWeight: FontWeight.w900, color: const Color(0xFF00D4AA))),
-            const SizedBox(height: 8),
-            Text('ژمارەی نهێنی: ${_winner == 1 ? _p2Secret : _p1Secret}',
-              style: GoogleFonts.cairo(fontSize: 18, color: Colors.white60)),
-            const SizedBox(height: 40),
-            GestureDetector(
-              onTap: () => Navigator.pop(context),
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    colors: [Color(0xFF00D4AA), Color(0xFF0099FF)]),
-                  borderRadius: BorderRadius.circular(20),
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Color(0xFF0F0F1E), Color(0xFF1A1A3E)],
+          ),
+        ),
+        child: SafeArea(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text('🎉',
+                    style: TextStyle(fontSize: 80)),
+                const SizedBox(height: 20),
+                Text(
+                  'یاریزانی $_winner بردی!',
+                  textDirection: TextDirection.rtl,
+                  style: GoogleFonts.cairo(
+                    fontSize: 32,
+                    fontWeight: FontWeight.w900,
+                    color: const Color(0xFF00D4AA),
+                  ),
                 ),
-                child: Text('دووبارە یاری بکە', style: GoogleFonts.cairo(
-                  fontSize: 16, fontWeight: FontWeight.w700, color: Colors.white)),
-              ),
+                const SizedBox(height: 8),
+                Text(
+                  'ژمارەی نهێنی: ${_winner == 1 ? _p2Secret : _p1Secret}',
+                  textDirection: TextDirection.rtl,
+                  style: GoogleFonts.cairo(
+                      fontSize: 18, color: Colors.white60),
+                ),
+                const SizedBox(height: 40),
+                GestureDetector(
+                  onTap: () => Navigator.pop(context),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 40, vertical: 16),
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(colors: [
+                        Color(0xFF00D4AA),
+                        Color(0xFF0099FF)
+                      ]),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Text(
+                      'دووبارە یاری بکە',
+                      textDirection: TextDirection.rtl,
+                      style: GoogleFonts.cairo(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ))),
+          ),
+        ),
       ),
     );
   }
