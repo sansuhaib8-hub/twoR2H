@@ -23,7 +23,7 @@ android {
     defaultConfig {
         applicationId = "com.kurdistan.two.r2h"
 
-        minSdk = 23
+        minSdk = 24
         targetSdk = flutter.targetSdkVersion
 
         versionCode = 1
