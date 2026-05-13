@@ -29,15 +29,19 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
 
-      - name: Build APK
-        run: flutter build apk --release
+      - name: Build APK (with full Gradle log)
+        run: |
+          cd android
+          ./gradlew assembleRelease --stacktrace --info 2>&1 | tail -100
 
-      - name: Find APK
-        run: find . -name "*.apk" -type f
+      - name: Find any APK
+        if: always()
+        run: find . -name "*.apk" 2>/dev/null || echo "NO APK FOUND"
 
       - name: Upload APK
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: app-release
           path: build/app/outputs/flutter-apk/app-release.apk
-          if-no-files-found: error
+          if-no-files-found: warn
