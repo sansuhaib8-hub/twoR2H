@@ -29,19 +29,22 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
 
-      - name: Build APK (with full Gradle log)
+      - name: Create local.properties
         run: |
-          cd android
-          ./gradlew assembleRelease --stacktrace --info 2>&1 | tail -100
+          echo "flutter.sdk=$FLUTTER_ROOT" > android/local.properties
+          echo "sdk.dir=$ANDROID_HOME" >> android/local.properties
+          cat android/local.properties
 
-      - name: Find any APK
+      - name: Build APK
+        run: flutter build apk --release
+
+      - name: Find APK
         if: always()
         run: find . -name "*.apk" 2>/dev/null || echo "NO APK FOUND"
 
       - name: Upload APK
-        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: app-release
           path: build/app/outputs/flutter-apk/app-release.apk
-          if-no-files-found: warn
+          if-no-files-found: error
