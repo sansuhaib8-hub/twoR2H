@@ -21,22 +21,11 @@ jobs:
 
       - run: flutter pub get
 
-      - run: flutter build apk --release || true
+      - run: flutter build apk --release --verbose 2>&1 | tee build_log.txt; exit ${PIPESTATUS[0]}
 
-      - name: Find and move APK
-        run: |
-          APK=$(find build -name "*.apk" | head -1)
-          echo "Found APK: $APK"
-          mkdir -p output
-          if [ -n "$APK" ]; then
-            cp "$APK" output/app-release.apk
-            echo "APK copied to output/"
-          else
-            echo "ERROR: No APK found!"
-            exit 1
-          fi
-
-      - uses: actions/upload-artifact@v4
+      - name: Upload build log on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
         with:
-          name: app-release
-          path: output/app-release.apk
+          name: build-log
+          path: build_log.txt
