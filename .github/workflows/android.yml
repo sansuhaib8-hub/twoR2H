@@ -17,12 +17,7 @@ jobs:
           flutter-version: '3.29.3'
           channel: 'stable'
 
-      - name: Copy settings.gradle.kts to root
-        run: cp android/settings.gradle.kts settings.gradle.kts
-
       - run: flutter clean
-
-      - run: rm -rf build
 
       - run: flutter pub get
 
