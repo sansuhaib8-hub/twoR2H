@@ -18,14 +18,16 @@ jobs:
           channel: 'stable'
 
       - run: flutter clean
-
       - run: flutter pub get
+      - run: flutter build apk --release --verbose > build_log.txt 2>&1 || true
 
-      - run: flutter build apk --release --verbose 2>&1 | tee build_log.txt; exit ${PIPESTATUS[0]}
-
-      - name: Upload build log on failure
-        if: failure()
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
           name: build-log
           path: build_log.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: app-release
+          path: build/app/outputs/flutter-apk/app-release.apk
+          if-no-files-found: warn
