@@ -23,11 +23,20 @@ jobs:
 
       - run: flutter build apk --release || true
 
-      - name: Find APK
-        run: find build -name "*.apk" 2>/dev/null || echo "No APK found"
+      - name: Find and move APK
+        run: |
+          APK=$(find build -name "*.apk" | head -1)
+          echo "Found APK: $APK"
+          mkdir -p output
+          if [ -n "$APK" ]; then
+            cp "$APK" output/app-release.apk
+            echo "APK copied to output/"
+          else
+            echo "ERROR: No APK found!"
+            exit 1
+          fi
 
       - uses: actions/upload-artifact@v4
         with:
           name: app-release
-          path: build/app/outputs/flutter-apk/app-release.apk
-          if-no-files-found: warn
+          path: output/app-release.apk
